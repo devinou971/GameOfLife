@@ -15,9 +15,9 @@ def reload(): # cette fonction permettra de rafraichir le canvas
 
     # On crée le grillage
     for x in range(resolution[0]+1):
-    	can.create_line(pas*x,0,pas*x,height)
+        can.create_line(pas*x,0,pas*x,height)
     for y in range(resolution[1]+1):
-    	can.create_line(0,pas*y,width,pas*y)
+        can.create_line(0,pas*y,width,pas*y)
 
     # On dessine toutes le cellules qui sont dans tout les différents stades
     for i in range(len(stade_1)):
@@ -66,43 +66,43 @@ def reload(): # cette fonction permettra de rafraichir le canvas
         can.create_rectangle(x0 , y0 , x1 , y1 , fill=couleur[5])
 
 def click_case(event): # cette fonction intervient quand l'on appuie dans le canvas et permet de remplir les tableaux de vie
-	global stade_1, gen, gen_IntVar, choix, stade_2, stade_3, stade_4, stade_5, pos
-	x , y = event.x, event.y # on prend la position de la souris
-	i = 0 # la position des cases
-	j = 0 # la position des cases
-	while pas * i <= x:
-		i = i + 1
-	while pas * j <= y:
-		j = j + 1
+    global stade_1, gen, gen_IntVar, choix, stade_2, stade_3, stade_4, stade_5, pos
+    x , y = event.x, event.y # on prend la position de la souris
+    i = 0 # la position des cases
+    j = 0 # la position des cases
+    while pas * i <= x:
+        i = i + 1
+    while pas * j <= y:
+        j = j + 1
 
-	pos_case_clicke = [i-1-pos[0], j-1-pos[1]] # cette variable contient le numéro de colone et de ligne de la case clické
-	
-	# on regarde si cette cellule n'est pas présente dans n'importe quel tableau de vie
-	if pos_case_clicke in stade_1:
-		stade_1.remove(pos_case_clicke) # si c'est le cas, on supprime la cellule
-	elif pos_case_clicke in stade_2:
-		stade_2.remove(pos_case_clicke)
-	elif pos_case_clicke in stade_3:
-		stade_3.remove(pos_case_clicke)
-	elif pos_case_clicke in stade_4:
-		stade_4.remove(pos_case_clicke)
-	elif pos_case_clicke in stade_5:
-		stade_5.remove(pos_case_clicke)
+    pos_case_clicke = [i-1-pos[0], j-1-pos[1]] # cette variable contient le numéro de colone et de ligne de la case clické
+    
+    # on regarde si cette cellule n'est pas présente dans n'importe quel tableau de vie
+    if pos_case_clicke in stade_1:
+        stade_1.remove(pos_case_clicke) # si c'est le cas, on supprime la cellule
+    elif pos_case_clicke in stade_2:
+        stade_2.remove(pos_case_clicke)
+    elif pos_case_clicke in stade_3:
+        stade_3.remove(pos_case_clicke)
+    elif pos_case_clicke in stade_4:
+        stade_4.remove(pos_case_clicke)
+    elif pos_case_clicke in stade_5:
+        stade_5.remove(pos_case_clicke)
 
-	elif choix == "stade 1": # si la cellule n'est présente nul part on l'ajoute la ou elle doit être
-		stade_1.append(pos_case_clicke)
-	elif choix == "stade 2":
-		stade_2.append(pos_case_clicke)
-	elif choix == "stade 3":
-		stade_3.append(pos_case_clicke)
-	elif choix == "stade 4":
-		stade_4.append(pos_case_clicke)
-	elif choix == "stade 5":
-		stade_5.append(pos_case_clicke)
+    elif choix == "stade 1": # si la cellule n'est présente nul part on l'ajoute la ou elle doit être
+        stade_1.append(pos_case_clicke)
+    elif choix == "stade 2":
+        stade_2.append(pos_case_clicke)
+    elif choix == "stade 3":
+        stade_3.append(pos_case_clicke)
+    elif choix == "stade 4":
+        stade_4.append(pos_case_clicke)
+    elif choix == "stade 5":
+        stade_5.append(pos_case_clicke)
 
-	gen = 0 # on remet la variable des génération à 0
-	gen_IntVar.set(0)
-	reload() # on rafrachit le canvas
+    gen = 0 # on remet la variable des génération à 0
+    gen_IntVar.set(0)
+    reload() # on rafrachit le canvas
 
 def jouer(): # cette fonction permet de faire jouer e jeu automatiquement
         global play, gen_IntVar, gen, stade_1, stade_2, stade_3, stade_4, stade_5
@@ -119,15 +119,15 @@ def spaceBar(*arg):
         if play:
                 stopper()
         else :
-        		jouer()
+                jouer()
 
 def next(*arg):
     algorithme(stade_1, stade_2, stade_3, stade_4, stade_5)
     reload()
 
 def stopper(): # ici on arrete le jeu en cours
-	global play
-	play = False
+    global play
+    play = False
 
 def reset(*arg): # permet de tout arreter et de tout reinitialiser
     global play, stade_1, gen, gen_IntVar, stade_2, stade_3, stade_4, stade_5, pos
@@ -143,11 +143,11 @@ def reset(*arg): # permet de tout arreter et de tout reinitialiser
     reload()
 
 def zoomM(*arg): # cette fonction permet de dézoomer
-	global pas, resolution
-	if pas != 1 and pas !=1: # on vérifie que pas et pas n'est pas éguale à 1 car, si c'est le cas, on aura un erreur : division par 0
-		pas = pas - 1 # on décrémente la largeur des carrés
-	resolution = [int(width / pas), int(height / pas)] # on regle la résolution
-	reload() # on rafraichit la canvas
+    global pas, resolution
+    if pas != 1 and pas !=1: # on vérifie que pas et pas n'est pas éguale à 1 car, si c'est le cas, on aura un erreur : division par 0
+        pas = pas - 1 # on décrémente la largeur des carrés
+    resolution = [int(width / pas), int(height / pas)] # on regle la résolution
+    reload() # on rafraichit la canvas
 
 def zoomP(*arg): # cette fonction permet de zoomer
         global pas, resolution
@@ -156,104 +156,104 @@ def zoomP(*arg): # cette fonction permet de zoomer
         reload() # on rafraichit le canvas
 
 def goUp(*arg): # cette fonction permet de monter dans la grille
-	global pos
-	pos[1] = pos[1] + 1
-	reload()
+    global pos
+    pos[1] = pos[1] + 1
+    reload()
 
 def goDown(*arg): # cette fonction permet de descendre dans la grille
-	global pos
-	pos[1] = pos[1] - 1
-	reload()
+    global pos
+    pos[1] = pos[1] - 1
+    reload()
 
 def goLeft(*arg): # cette fonction permet d'aller à gauche dans la grille
-	global pos
-	pos[0] = pos[0] + 1
-	reload()
+    global pos
+    pos[0] = pos[0] + 1
+    reload()
 
 def goRight(*arg): # cette fonction permet d'aller à la droite dans la grille
-	global pos
-	pos[0] = pos[0] - 1
-	reload()
+    global pos
+    pos[0] = pos[0] - 1
+    reload()
 
 def Ouvrir(*arg):
-	global play, stade_1, stade_2, stade_3, stade_4, stade_5
-	play = False
-	path = askopenfilename(initialdir = "save/", filetypes=[('json files', '.json'), ('all files', '')])
-	doc = 0
-	ok = True
-	try:
-		doc = open(path, "r")
-	except TypeError :
-		print("Aucun fichier sélectionné")
-		ok = False
-	except FileNotFoundError:
-		print("Aucun fichier sélectionné")
-		ok = False
-	if ok :
-		save = json.load(doc)
-		if save["commentaire"] == "save":
-			stade_1 = save["stade_1"]
-			stade_2 = save["stade_2"]
-			stade_3 = save["stade_3"]
-			stade_4 = save["stade_4"]
-			stade_5 = save["stade_5"]
-		else:
-			showerror("Ouverture", "Ceci n'est pas un fichier de sauvegarde")
-		reload()
+    global play, stade_1, stade_2, stade_3, stade_4, stade_5
+    play = False
+    path = askopenfilename(initialdir = "save/", filetypes=[('json files', '.json'), ('all files', '')])
+    doc = 0
+    ok = True
+    try:
+        doc = open(path, "r")
+    except TypeError :
+        print("Aucun fichier sélectionné")
+        ok = False
+    except FileNotFoundError:
+        print("Aucun fichier sélectionné")
+        ok = False
+    if ok :
+        save = json.load(doc)
+        if save["commentaire"] == "save":
+            stade_1 = save["stade_1"]
+            stade_2 = save["stade_2"]
+            stade_3 = save["stade_3"]
+            stade_4 = save["stade_4"]
+            stade_5 = save["stade_5"]
+        else:
+            showerror("Ouverture", "Ceci n'est pas un fichier de sauvegarde")
+        reload()
 
 def Sauver(*arg):
-	global play, stade_1, stade_2, stade_3, stade_4, stade_5
-	play = False
-	path = asksaveasfilename(initialdir = "save/", filetypes=[('json files', '.json')])
-	if not path == "":
-		if not path[-5:] == ".json":
-			path = path + ".json"
-		doc = open(path, "w")
-		doc.write(json.dumps({"commentaire" : "save", "stade_1" : stade_1, "stade_2" : stade_2, "stade_3" : stade_3, "stade_4" : stade_4, "stade_5" : stade_5}, ensure_ascii=False))
-		doc.close()
+    global play, stade_1, stade_2, stade_3, stade_4, stade_5
+    play = False
+    path = asksaveasfilename(initialdir = "save/", filetypes=[('json files', '.json')])
+    if not path == "":
+        if not path[-5:] == ".json":
+            path = path + ".json"
+        doc = open(path, "w")
+        doc.write(json.dumps({"commentaire" : "save", "stade_1" : stade_1, "stade_2" : stade_2, "stade_3" : stade_3, "stade_4" : stade_4, "stade_5" : stade_5}, ensure_ascii=False))
+        doc.close()
 
 def changerAlgo(preference, play):
-	play = False
-	path = askopenfilename(initialdir = "algo/", filetypes=[('Python files', '.py'), ('all files', '')])
-	if path != "":
-		name = path.split("/")[len(path.split("/"))-1]
-		fichierpreference = open("preference/preference.json", "w") 
-		fichierpreference.write(json.dumps({"couleur" : list(preference["couleur"]), "algo_de_base" : str(name), "pas" : int(preference["pas"]), "width" : int(preference["width"]), "height" : int(preference["height"]), "theme" : str(preference["theme"])}, ensure_ascii=False))
-		fichierpreference.close()
-		showinfo("Algorithme", "Le changement d'algorithme sera pris en compte lors du prochain démarage du programme")
+    play = False
+    path = askopenfilename(initialdir = "algo/", filetypes=[('Python files', '.py'), ('all files', '')])
+    if path != "":
+        name = path.split("/")[len(path.split("/"))-1]
+        fichierpreference = open("preference/preference.json", "w") 
+        fichierpreference.write(json.dumps({"couleur" : list(preference["couleur"]), "algo_de_base" : str(name), "pas" : int(preference["pas"]), "width" : int(preference["width"]), "height" : int(preference["height"]), "theme" : str(preference["theme"])}, ensure_ascii=False))
+        fichierpreference.close()
+        showinfo("Algorithme", "Le changement d'algorithme sera pris en compte lors du prochain démarage du programme")
 
 def changerTheme(preference, play):
-	play = False
-	path = askopenfilename(initialdir = "preference/theme/", filetypes=[('json files', '.json'), ('all files', '')])
-	if path != "":
-		name = path.split("/")[len(path.split("/"))-1]
-		fichierpreference = open("preference/preference.json", "w") 
-		fichierpreference.write(json.dumps({"couleur" : list(preference["couleur"]), "algo_de_base" : str(preference["algo_de_base"]), "pas" : int(preference["pas"]), "width" : int(preference["width"]), "height" : int(preference["height"]), "theme" : str(name)}, ensure_ascii=False))
-		fichierpreference.close()
+    play = False
+    path = askopenfilename(initialdir = "preference/theme/", filetypes=[('json files', '.json'), ('all files', '')])
+    if path != "":
+        name = path.split("/")[len(path.split("/"))-1]
+        fichierpreference = open("preference/preference.json", "w") 
+        fichierpreference.write(json.dumps({"couleur" : list(preference["couleur"]), "algo_de_base" : str(preference["algo_de_base"]), "pas" : int(preference["pas"]), "width" : int(preference["width"]), "height" : int(preference["height"]), "theme" : str(name)}, ensure_ascii=False))
+        fichierpreference.close()
 
-		fichierpreference = open("preference/preference.json", "r")  # On ouvre le fichier de préference
-		preference = json.load(fichierpreference) # on transforme son contenu en dictionnaire
-		fichierpreference.close() # fermeture du fichier
+        fichierpreference = open("preference/preference.json", "r")  # On ouvre le fichier de préference
+        preference = json.load(fichierpreference) # on transforme son contenu en dictionnaire
+        fichierpreference.close() # fermeture du fichier
 
-		fichiertheme = open("preference/theme/"+preference["theme"], "r") # Ouverture du fichier de theme
-		theme = json.load(fichiertheme) # transforamtion du contenu en dictionnaire
-		fichiertheme.close() # fermeture du fichier
+        fichiertheme = open("preference/theme/"+preference["theme"], "r") # Ouverture du fichier de theme
+        theme = json.load(fichiertheme) # transforamtion du contenu en dictionnaire
+        fichiertheme.close() # fermeture du fichier
 
-		showinfo("Theme", "Le changement de theme sera pris en compte lors du prochain démarage du programme")
+        showinfo("Theme", "Le changement de theme sera pris en compte lors du prochain démarage du programme")
 
 def aide():
-	helps = Tk()
-	helps.configure(bg = theme["bg"])
-	helps.title("Aide")
-	Label(helps,text = "Raccourcis : \n\nO ->\n\nS ->\n\nR ->\n\nP ->\n\nM ->\n\nBarre espace ->\n\nCroix directionnel ->", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=0)
-	Label(helps,text = "\n\n\tOuvrir un fichier save\n\n\tSauvegarder la grille actuelle\n\n\tRéinitialise la grille actuelle\n\n\tZoom Plus\n\n\tZoom Moins\n\n\tPause / Play\n\n\tFait bouger la grille", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=1)
-	helps.mainloop()
+    helps = Tk()
+    helps.configure(bg = theme["bg"])
+    helps.title("Aide")
+    Label(helps,text = "Raccourcis : \n\nO ->\n\nS ->\n\nR ->\n\nP ->\n\nM ->\n\nBarre espace ->\n\nCroix directionnel ->", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=0)
+    Label(helps,text = "\n\n\tOuvrir un fichier save\n\n\tSauvegarder la grille actuelle\n\n\tRéinitialise la grille actuelle\n\n\tZoom Plus\n\n\tZoom Moins\n\n\tPause / Play\n\n\tFait bouger la grille", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=1)
+    helps.mainloop()
         
 def credit():
-	cre = Tk()
-	cre.title("Crédits")
-	Label(cre,text="\n \t Jeu créé par Damien DASSEUX & Arnaud DIONISIUS \t \n", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=0)
-	cre.mainloop()
+    cre = Tk()
+    cre.title("Crédits")
+    Label(cre,text="\n \t Jeu créé par Damien DASSEUX & Arnaud DIONISIUS \t \n", bg=theme["bg"], fg = theme["fg"]).grid(row=0, column=0)
+    cre.mainloop()
 
 def JeuFamille(): # Arnaud
         def afficher(can, posCellsCan):
@@ -383,8 +383,8 @@ def JeuFamille(): # Arnaud
         Jeu.mainloop()
 
 def selection(event):
-	global choix
-	choix = lst.get(lst.curselection())
+    global choix
+    choix = lst.get(lst.curselection())
 
 import json # besoins pour les préférences
 from threading import Timer
@@ -395,7 +395,7 @@ try :
     from tkinter.messagebox import showerror, showinfo
 except ImportError:
     print("""Tkinter n'est pas intallé sur votre machine ou vous avez lancé ce programme avec Python2.X\n
-    	      auquel cas je vous demanderais de lancer le programme avec Python3.X.""")
+              auquel cas je vous demanderais de lancer le programme avec Python3.X.""")
     variableInutile = input("\n\nAppuyer sur entrer pour quitter")# en fait cela sert à attendre que l'utilisateur appui sur "entrer" pour arrerter le programme
     exit()
 
@@ -451,9 +451,9 @@ can = Canvas(fen, width =width, height=height, bg=theme["Canvasbg"])
 # On crée un grillage
 """
 for x in range(resolution[0]+1):
-	can.create_line(pas*x,0,pas*x,height*2)
+    can.create_line(pas*x,0,pas*x,height*2)
 for y in range(resolution[1]+1):
-	can.create_line(0,pas*y,width*2,pas*y)
+    can.create_line(0,pas*y,width*2,pas*y)
 """
 reload()
 
